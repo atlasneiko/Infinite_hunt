@@ -1,5 +1,5 @@
 import {
-  RECEIVE_USER_LOGOUT,
+  RECEIVE_USER_SIGN_OUT,
   RECEIVE_CURRENT_USER,
   RECEIVE_USER_SIGN_IN,
 } from '../actions/SessionActions';
@@ -16,7 +16,7 @@ export default function SessionReducer(state = _initialState, action) {
 
   switch (action.type) {
     case RECEIVE_USER:
-      const { user } = action.payload;
+      const user = action.payload;
       if (state.user && state.user.id === user._id) {
         return {
           ...state,
@@ -32,7 +32,7 @@ export default function SessionReducer(state = _initialState, action) {
         user: action.currentUser,
       };
 
-    case RECEIVE_USER_LOGOUT:
+    case RECEIVE_USER_SIGN_OUT:
       return {
         isAuthenticated: false,
         user: undefined,

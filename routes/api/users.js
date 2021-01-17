@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
         password: req.body.password,
         email: req.body.email,
         username: req.body.username,
-        avatarUrl: req.body.avatarUrl
+        avatarUrl: req.body.avatarUrl,
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -47,7 +47,7 @@ router.post('/register', (req, res) => {
                   res.json({
                     success: true,
                     token: 'Bearer ' + token,
-                    user: user
+                    user: user,
                   });
                 }
               );
@@ -89,7 +89,7 @@ router.post('/signin', (req, res) => {
             res.json({
               success: true,
               token: 'Bearer ' + token,
-              user: user
+              user: user,
             });
           }
         );
@@ -113,8 +113,7 @@ router.patch(
   '/:userId',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-
-    User.findOne({ _id: req.params.userId }).then(user => {
+    User.findOne({ _id: req.params.userId }).then((user) => {
       if (!user) {
         errors.email = 'This user does not exist';
         return res.status(400).json(errors);
@@ -125,21 +124,19 @@ router.patch(
             password: req.body.newPassword,
             email: req.body.email,
             username: req.body.username,
-            avatarUrl: req.body.avatarUrl
-          }
+            avatarUrl: req.body.avatarUrl,
+          };
 
           bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
               if (err) throw err;
-              newUser.password = hash
+              newUser.password = hash;
 
-              User.findOneAndUpdate(
-                { _id: req.params.userId },
-                newUser,
-                { new: true }
-              )
+              User.findOneAndUpdate({ _id: req.params.userId }, newUser, {
+                new: true,
+              })
                 .then((user) => {
-                  res.json(user)
+                  res.json(user);
                 })
                 .catch((err) => res.status(400).json(err));
             });
@@ -148,43 +145,15 @@ router.patch(
           errors.password = 'invalid combination of email and password';
           return res.status(400).json(errors);
         }
-      })
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      });
+    });
   }
 );
 
-
 router.get('/', (req, res) => {
   User.find()
-    .then(users => res.json(users))
-    .catch((err) => res.status(400).json(err))
-})
-
-
+    .then((users) => res.json(users))
+    .catch((err) => res.status(400).json(err));
+});
 
 module.exports = router;

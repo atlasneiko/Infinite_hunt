@@ -6,8 +6,6 @@ const db = require('./config/keys').mongoURI;
 const passport = require('passport');
 const path = require('path');
 
-
-
 const users = require('./routes/api/users');
 const applications = require('./routes/api/applications');
 //* connect to mongoDB
@@ -30,7 +28,6 @@ app.use('/api/applications', applications);
 
 app.listen(port, () => console.log(`server is running on port ${port}`));
 
-
 //update job db everyday
 const cron = require('node-cron');
 
@@ -40,9 +37,8 @@ const cron = require('node-cron');
 //   app.listen(port, () => console.log("a new day"))
 // })
 cron.schedule('*/10 * * * *', () => {
-  app.listen(port, () => console.log("2 mins"))
-})
-
+  app.listen(port, () => console.log('2 mins'));
+});
 
 //* all fullstack
 // https://jobs.github.com/positions.json?description=full+stack&full_time=true
