@@ -30,7 +30,7 @@ app.listen(port, () => console.log(`server is running on port ${port}`));
 
 //update job db everyday
 const cron = require('node-cron');
-let shell = require('shelljs');
+
 //* triggerd everyday at 00:00
 //? sec-min-hour-dayOfMonth-month-dayOfWeek
 // cron.schedule("00 00 * * *", function () {
@@ -45,3 +45,4 @@ cron.schedule('*/10 * * * *', () => {
 //* all frontend
 //https://jobs.github.com/positions.json?description=front+end&full_time=true
 //* all backend
+//https://jobs.github.com/positions.json?description=back+end&full_time=true

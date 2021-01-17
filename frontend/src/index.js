@@ -6,7 +6,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import App from './components/App';
 import ScrollHelper from './ScrollHelper';
+
 import configureStore from './store/store.js';
+
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/SessionApiUtil';
 import { signout } from './actions/SessionActions';
