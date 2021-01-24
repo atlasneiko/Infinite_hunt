@@ -5,14 +5,13 @@ import Navbar from './Navbar';
 import Landing from './Landing_container';
 import Signin from './Signin';
 import Signup from './Signup';
-import EditForm from './profolio/edit_form';
 import { AuthRoute, ProtectedRoute } from './SpecialRoutes';
 import Profolio from './profolio/profolio_container';
 import ApplicationList from './ApplicationList';
 import ApplicationDetailItem from './ApplicationDetailItem';
 import Footer from './Footer';
-import Charts from './charts/allChartsContainer';
 import ApplicationPostForm from './appForms/appPostForm';
+import ApplicationEditForm from './appForms/appEditForm';
 
 function App() {
   const loggedIn = false;
@@ -28,6 +27,11 @@ function App() {
           exact
           path="/newApplication"
           component={ApplicationPostForm}
+        />
+        <ProtectedRoute
+          exact
+          path="/editApplication/:applicationId"
+          component={ApplicationEditForm}
         />
         <Route exact path="/" component={Landing} />
         {/* <ProtectedRoute exact path='/edit' component={EditForm} /> */}
